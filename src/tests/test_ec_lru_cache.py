@@ -1,6 +1,7 @@
 import unittest
 from src.ec_lru_cache import Node, LRUCache
 
+
 class NodeBasicTests(unittest.TestCase):
     def test_node_init(self):
         expected_key = 5
@@ -11,6 +12,7 @@ class NodeBasicTests(unittest.TestCase):
         self.assertEqual(actual.val, expected_val)
         self.assertIsNone(actual.prev_node)
         self.assertIsNone(actual.next_node)
+
 
 class LRUCacheBasicTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -41,6 +43,7 @@ class LRUCacheBasicTests(unittest.TestCase):
 
         actual = self.cache.get(3)
         self.assertEqual(actual.val, expected)
+
 
 class LRUCacheCapTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -87,7 +90,7 @@ class LRUCacheCapTests(unittest.TestCase):
 
         self.assertEqual(len(self.cache.node_dict), 3)
         self.assertIsNotNone(item_1)
-        self.assertIsNone(item_2)        
+        self.assertIsNone(item_2)
 
 
 class LRUCacheOrderingTests(unittest.TestCase):
@@ -125,7 +128,7 @@ class LRUCacheOrderingTests(unittest.TestCase):
         self.assertEqual(node_3.next_node.key, self.cache.tail.key)
         self.assertEqual(self.cache.tail.prev_node.key, node_3.key)
 
-        # if we get(2), node_2 should get set to the tail 
+        # if we get(2), node_2 should get sent to the tail 
         node_2 = self.cache.get(2)
 
         # order should now be head -> node_1 -> node_3 -> node_2 -> tail
